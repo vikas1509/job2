@@ -8,6 +8,11 @@ import Proficiency from './StudentsComponents/Proficiency/Proficiency';
 import SuccessEmail from './StudentsComponents/SuccessEmail/SuccessEmail';
 import SkillTest from './StudentsComponents/SkillTest/SkillsTest';
 import ProfessionalTest from './StudentsComponents/ProfessionalTest/Professional';
+import ReasoningTest from './StudentsComponents/Reasoning/Reasoning';
+import Verbal from './StudentsComponents/VerbalTest/Verbal';
+import SituationTest from './StudentsComponents/SituationTest.jsx/Situation';
+import Congrats from './StudentsComponents/Congrats/Congrats';
+import Score from './StudentsComponents/Score/Score';
 
 
 const App = () => {
@@ -21,6 +26,11 @@ const App = () => {
       <Route path="/SuccesEmail" element={<SuccessEmail/>}/>
       <Route path="/SkillTest" element={<SkillTest/>}/>
       <Route path='ProfessionalTest' element={<ProfessionalTest/>}/>
+      <Route path='/ReasoningTest' element={<ReasoningTest/>}/>
+      <Route path='/Verbal' element={<Verbal/>}/>
+      <Route path='/Situation' element={<SituationTest/>}/>
+      <Route path='/Congratulations' element={<Congrats/>}/>
+      <Route path='/Score' element={<Score/>}/>
     </Routes>
   );
 };

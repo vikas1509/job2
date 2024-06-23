@@ -6,9 +6,8 @@ import { useNavigate } from 'react-router-dom';
 const TopSkills = () => {
   const navigate = useNavigate();
   const { topSkills, selectedSkills, setSelectedSkills, user } = useContext(DataContext);
-
+console.log(selectedSkills, "selected Skills ");
   useEffect(() => {
-    // Enable submit button if 5 skills are selected
     document.getElementById('submitBtn').disabled = selectedSkills.length !== 5;
   }, [selectedSkills]);
 
@@ -41,7 +40,7 @@ const TopSkills = () => {
         body: formData,
       });
 
-      if (true) {
+      if (response.ok) {
         const data = await response.json();
         console.log(`Submitted skills: ${selectedSkills.join(', ')}`);
         navigate('/proficiency');
@@ -55,11 +54,11 @@ const TopSkills = () => {
   };
 
   return (
-    <div className="container">
-      <h1 className='heading'>Select Your Top 5 Skills</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="top-skills-container">
+      <h1 className='top-skills-heading'>Select Your Top 5 Skills</h1>
+      <form className="top-skills-form" onSubmit={handleSubmit}>
         {topSkills.map((skill) => (
-          <div className="skill-item" key={skill}>
+          <div className="top-skills-item" key={skill}>
             <input
               type="checkbox"
               name="skill"
@@ -73,8 +72,8 @@ const TopSkills = () => {
           </div>
         ))}
         <input type="hidden" name="name" value={user} />
-        <div className="submit-btn-wrapper">
-          <button type="submit" className="submit-btn" id="submitBtn" disabled>
+        <div className="top-skills-submit-btn-wrapper">
+          <button type="submit" className="top-skills-submit-btn" id="submitBtn" disabled>
             Submit
           </button>
         </div>

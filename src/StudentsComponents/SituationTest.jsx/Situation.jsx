@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
-import './Professional.css'; // Separate CSS file for styling
 import DataContext from '../../context/DataContext';
 import { useNavigate } from 'react-router-dom';
+import './SituationTest.css';
 
-const ProfessionalTest = () => {
+const SituationTest = () => {
     const navigate = useNavigate();
     const { user } = useContext(DataContext);
     const [questions, setQuestions] = useState([]);
+    const [paragraph, setParagraph] = useState("");
     const [answers, setAnswers] = useState({});
     const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
     const [percentageAnswered, setPercentageAnswered] = useState(0);
@@ -14,11 +15,12 @@ const ProfessionalTest = () => {
     useEffect(() => {
         const fetchQuestions = async () => {
             try {
-                const response = await fetch(`http://localhost:8000/flask/profess/${user}`);
+                const response = await fetch(`http://localhost:8000/flask/situ/${user}`);
                 const data = await response.json();
-
-                console.log(data[0],"professional quetionssssss");
+                console.log(data[0],"situation quetionsss");
                 setQuestions(data[0]);
+                console.log(data[1],"paragraph");
+                setParagraph(data[2]);
             } catch (error) {
                 console.error("Error fetching questions:", error);
             }
@@ -60,12 +62,13 @@ const ProfessionalTest = () => {
         });
 
         try {
-            const response = await fetch('http://localhost:8000/flask/profess_submit_test', {
+            const response = await fetch('http://localhost:8000/flask/situation_submit_test', {
                 method: 'POST',
                 body: formData,
             });
+
             if (response.ok) {
-                navigate("/ReasoningTest")
+                navigate("/Congratulations");
                 alert('Test submitted successfully.');
             } else {
                 alert('Failed to submit test.');
@@ -81,15 +84,18 @@ const ProfessionalTest = () => {
     }
 
     return (
-        <div className="professionalContainer">
-            <h1 className="professionalTitle">Professionalism Test</h1>
+        <div className="situation-container">
+            <h1 className="situation-title">Situation Based Test</h1>
             <form id="testForm" onSubmit={handleSubmit}>
+                <div className="situation-passage">
+                    <p>{paragraph}</p>
+                </div>
                 {questions.map((question, index) => (
                     <div key={index}>
-                        <div className="professionalQuestion">
+                        <div className="situation-question">
                             <p>{question.question}</p>
                         </div>
-                        <ul className="professionalOptions">
+                        <ul className="situation-options">
                             {['A', 'B', 'C', 'D'].map((option) => (
                                 <li key={option}>
                                     <input
@@ -109,18 +115,18 @@ const ProfessionalTest = () => {
                 ))}
                 <input type="hidden" name="name" value={user} />
                 <input type="hidden" name="count" value={questions.length} />
-                <div className="professionalSubmitBtnWrapper">
-                    <p className="professionalAnsweredQuestions">You Answered: {percentageAnswered}%</p>
+                <div className="situation-submit-btn-wrapper">
+                    <p className="situation-answered-questions">You Answered: {percentageAnswered}%</p>
                 </div>
-                <button type="submit" className="professionalSubmitBtn" disabled={isSubmitDisabled}>
+                <button type="submit" className="situation-submit-btn" disabled={isSubmitDisabled}>
                     Submit
                 </button>
             </form>
-            <p className="professionalError" id="error" style={{ display: isSubmitDisabled ? 'block' : 'none' }}>
+            <p id="error" style={{ display: isSubmitDisabled ? 'block' : 'none' }}>
                 Please answer all questions
             </p>
         </div>
     );
 };
 
-export default ProfessionalTest
+export default SituationTest;

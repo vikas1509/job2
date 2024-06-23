@@ -1,80 +1,95 @@
+/* General body styling should not be part of component-specific CSS */
 body {
-    font-family: Arial, sans-serif;
-    background: #ffffff;
-    display: flex;
-    justify-content: center;
-  
-    height: 100vh;
-    margin: 0;
-    
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  margin: 0;
+}
 
-  }
+/* Container for the top skills component */
+/* Container for the top skills component */
+.top-skills-container {
+  margin-top: 5rem;
+ 
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em; 
   
-  .container {
-    background: white;
-    padding: 2em;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
-    max-width: 90%;
-    max-height: 90%;
-    overflow-y: auto;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-  }
+  /* background: red;
+  padding: 2em;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  height: 300vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem; */ 
+}
+
+/* Heading styling */
+.top-skills-heading {
+  text-align: center;
+  color: #5b4df2;
+  margin-bottom: 1em;
+ 
+}
+
+/* Form styling */
+.top-skills-form {
+  display: flex;
+  flex-direction: column;
+  height: 98%;
+  align-items: center;
   
-  h1 {
-    text-align: center;
-    color: #5b4df2;
-    margin-bottom: 1em;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .skill-item {
-    display: flex;
-    align-items: center;
-    margin: 0.5em 0;
-  }
-  
-  .skill-item input[type="checkbox"] {
-    margin-right: 0.5em;
-  }
-  
-  .skill-item label {
-    font-size: 1.1em;
-    color: #333;
-  }
-  
-  .submit-btn {
-    background: #5b4df2;
-    color: white;
-    padding: 0.5em 1em;
-    border: none;
-    border-radius: 5px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    margin-top: 1em;
-  }
-  
-  .submit-btn:hover {
-    background: #3e34a6;
-  }
-  
-  .submit-btn:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-  }
-  
-  .submit-btn-wrapper {
-    position: fixed;
-    top: 500px;
-    right: 600px;
-  }
-  
+}
+
+/* Skill item styling */
+.top-skills-item {
+  display: flex;
+  align-items: center;
+  margin: 0.5em 0;
+}
+
+.top-skills-item input[type="checkbox"] {
+  margin-right: 0.5em;
+}
+
+.top-skills-item label {
+  font-size: 1.1em;
+  color: #333;
+}
+
+/* Submit button styling */
+.top-skills-submit-btn {
+  background: #5b4df2;
+  color: white;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 1em;
+}
+
+.top-skills-submit-btn:hover {
+  background: #3e34a6;
+}
+
+.top-skills-submit-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Wrapper for submit button */
+.top-skills-submit-btn-wrapper {
+  /* position: fixed;
+  top: 500px;
+  right: 600px; */
+}

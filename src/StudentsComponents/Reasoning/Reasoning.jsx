@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
-import './Professional.css'; // Separate CSS file for styling
+import './Reasoning.css'; // Import the CSS file for styling
 import DataContext from '../../context/DataContext';
 import { useNavigate } from 'react-router-dom';
 
-const ProfessionalTest = () => {
+const ReasoningTest = () => {
     const navigate = useNavigate();
     const { user } = useContext(DataContext);
     const [questions, setQuestions] = useState([]);
@@ -14,10 +14,10 @@ const ProfessionalTest = () => {
     useEffect(() => {
         const fetchQuestions = async () => {
             try {
-                const response = await fetch(`http://localhost:8000/flask/profess/${user}`);
+                const response = await fetch(`http://localhost:8000/flask/reasoning/${user}`);
                 const data = await response.json();
 
-                console.log(data[0],"professional quetionssssss");
+           console.log(data[0],"reasoning quetionssss");
                 setQuestions(data[0]);
             } catch (error) {
                 console.error("Error fetching questions:", error);
@@ -60,12 +60,12 @@ const ProfessionalTest = () => {
         });
 
         try {
-            const response = await fetch('http://localhost:8000/flask/profess_submit_test', {
+            const response = await fetch('http://localhost:8000/flask/reasoning_submit_test', {
                 method: 'POST',
                 body: formData,
             });
             if (response.ok) {
-                navigate("/ReasoningTest")
+                navigate("/Verbal");
                 alert('Test submitted successfully.');
             } else {
                 alert('Failed to submit test.');
@@ -81,15 +81,15 @@ const ProfessionalTest = () => {
     }
 
     return (
-        <div className="professionalContainer">
-            <h1 className="professionalTitle">Professionalism Test</h1>
+        <div className="reasoningContainer">
+            <h1 className="reasoningTitle">Reasoning Test</h1>
             <form id="testForm" onSubmit={handleSubmit}>
                 {questions.map((question, index) => (
                     <div key={index}>
-                        <div className="professionalQuestion">
+                        <div className="reasoningQuestion">
                             <p>{question.question}</p>
                         </div>
-                        <ul className="professionalOptions">
+                        <ul className="reasoningOptions">
                             {['A', 'B', 'C', 'D'].map((option) => (
                                 <li key={option}>
                                     <input
@@ -109,18 +109,18 @@ const ProfessionalTest = () => {
                 ))}
                 <input type="hidden" name="name" value={user} />
                 <input type="hidden" name="count" value={questions.length} />
-                <div className="professionalSubmitBtnWrapper">
-                    <p className="professionalAnsweredQuestions">You Answered: {percentageAnswered}%</p>
+                <div className="reasoningSubmitBtnWrapper">
+                    <p className="reasoningAnsweredQuestions">You Answered: {percentageAnswered}%</p>
                 </div>
-                <button type="submit" className="professionalSubmitBtn" disabled={isSubmitDisabled}>
+                <button type="submit" className="reasoningSubmitBtn" disabled={isSubmitDisabled}>
                     Submit
                 </button>
             </form>
-            <p className="professionalError" id="error" style={{ display: isSubmitDisabled ? 'block' : 'none' }}>
+            <p id="error" style={{ display: isSubmitDisabled ? 'block' : 'none' }}>
                 Please answer all questions
             </p>
         </div>
     );
 };
 
-export default ProfessionalTest
+export default ReasoningTest;
